@@ -1,6 +1,13 @@
 /* global saveAs, Blob, BlobBuilder, console */
 /* exported ics */
 
+var uuid = function() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+};
+
 var ics = function(uidDomain, prodId) {
   'use strict';
 
@@ -135,7 +142,7 @@ var ics = function(uidDomain, prodId) {
       // Since some calendars don't add 0 second events, we need to remove time if there is none...
       var start_time = '';
       var end_time = '';
-      if (start_hours + start_minutes + start_seconds + end_hours + end_minutes + end_seconds != 0) {
+      if (start_hours + start_minutes + start_seconds + end_hours + end_minutes + end_seconds !== 0) {
         start_time = 'T' + start_hours + start_minutes + start_seconds;
         end_time = 'T' + end_hours + end_minutes + end_seconds;
       }
@@ -176,7 +183,7 @@ var ics = function(uidDomain, prodId) {
 
       var calendarEvent = [
         'BEGIN:VEVENT',
-        'UID:' + calendarEvents.length + "@" + uidDomain,
+        'UID:' + uuid() + "@" + uidDomain,
         'CLASS:PUBLIC',
         'DESCRIPTION:' + description,
         'DTSTAMP;VALUE=DATE-TIME:' + now,
