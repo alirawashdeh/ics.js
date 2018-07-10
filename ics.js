@@ -140,11 +140,15 @@ var ics = function(uidDomain, prodId) {
       var now_seconds = ("00" + (now_date.getSeconds().toString())).slice(-2);
 
       // Since some calendars don't add 0 second events, we need to remove time if there is none...
+      var start_prefix = 'DTSTART;VALUE=DATE:';
+      var end_prefix =  'DTEND;VALUE=DATE:';
       var start_time = '';
       var end_time = '';
       if (start_hours + start_minutes + start_seconds + end_hours + end_minutes + end_seconds != 0) {
         start_time = 'T' + start_hours + start_minutes + start_seconds;
         end_time = 'T' + end_hours + end_minutes + end_seconds;
+        start_prefix = 'DTSTART;VALUE=DATE-TIME:'
+        end_prefix =   'DTEND;VALUE=DATE-TIME:';
       }
       var now_time = 'T' + now_hours + now_minutes + now_seconds;
 
@@ -187,8 +191,8 @@ var ics = function(uidDomain, prodId) {
         'CLASS:PUBLIC',
         'DESCRIPTION:' + description,
         'DTSTAMP;VALUE=DATE-TIME:' + now,
-        'DTSTART;VALUE=DATE-TIME:' + start,
-        'DTEND;VALUE=DATE-TIME:' + end,
+        start_prefix + start,
+        end_prefix + end,
         'LOCATION:' + location,
         'SUMMARY;LANGUAGE=en-us:' + subject,
         'TRANSP:TRANSPARENT',
