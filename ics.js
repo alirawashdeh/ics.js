@@ -144,10 +144,10 @@ var ics = function(uidDomain, prodId) {
       var end_prefix =  'DTEND;VALUE=DATE:';
       var start_time = '';
       var end_time = '';
-      if (start_hours + start_minutes + start_seconds + end_hours + end_minutes + end_seconds != 0) {
+      if (start_hours + start_minutes + start_seconds + end_hours + end_minutes + end_seconds !== 0) {
         start_time = 'T' + start_hours + start_minutes + start_seconds;
         end_time = 'T' + end_hours + end_minutes + end_seconds;
-        start_prefix = 'DTSTART;VALUE=DATE-TIME:'
+        start_prefix = 'DTSTART;VALUE=DATE-TIME:';
         end_prefix =   'DTEND;VALUE=DATE-TIME:';
       }
       var now_time = 'T' + now_hours + now_minutes + now_seconds;
