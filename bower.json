@@ -23,7 +23,6 @@
     "demo"
   ],
   "dependencies": {
-    "Blob.js": "eligrey/Blob.js",
-    "FileSaver": "*"
+    "Blob.js": "eligrey/Blob.js"
   }
 }
